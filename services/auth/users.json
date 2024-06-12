@@ -8,6 +8,16 @@
       "id": 2,
       "name": "Jane Doe",
       "email": "jane.doe@example.com"
+    },
+    {
+      "id": 3,
+      "name": "Bob Smith",
+      "email": "bob.smith@example.com"
+    },
+    {
+      "id": 4,
+      "name": "Alice Smith",
+      "email": "jane.doe@example.com"
     }
 ]
   
