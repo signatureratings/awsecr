@@ -31,5 +31,5 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
         AWS_REGION: us-east-1
       run: |
-        chmode +x ./build.sh
+        chmod +x ./build.sh
         ./build.sh
