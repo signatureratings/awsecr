@@ -1,0 +1,34 @@
+{
+    "family": "auth-task-definition",
+    "containerDefinitions": [
+        {
+            "name": "auth-container",
+            "image": "654654310647.dkr.ecr.us-east-1.amazonaws.com/my-ecr-repo/auth-IMAGE_TAG_PLACEHOLDER",
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "ENV_VAR_NAME",
+                    "value": "ENV_VAR_VALUE"
+                }
+            ],
+            "entryPoint": [
+                "sh",
+                "-c"
+            ],
+            "command": [
+                "npm run start"
+            ]
+        }
+    ],
+    "requiresCompatibilities": ["FARGATE"],
+    "networkMode": "awsvpc",
+    "cpu": "256", 
+    "memory": "512"
+}

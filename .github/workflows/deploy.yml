@@ -31,5 +31,12 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
         AWS_REGION: us-east-1
       run: |
-        chmod +x ./build.sh
-        ./build.sh
+        chmod +x ./buildECR.sh
+        ./buildECR.sh
+    
+    - name: Deploy to Amazon ECS
+      env:
+        CLUSTER_NAME: my-ecs-cluster
+      run: |
+        chmod +x ./buildECS.sh
+        ./buildECS.sh

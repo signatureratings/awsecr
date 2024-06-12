@@ -10,7 +10,9 @@ aws ecr describe-repositories --repository-names "${repository_name}" > /dev/nul
 # If the repository does not exist, create it
 if [ $? -ne 0 ]
 then
+    echo "Could not find ECR repository ${repository_name}. Creating it..."
     aws ecr create-repository --repository-name "${repository_name}"
+    echo "Repository created Successfully."
 fi 
 
 echo "Building services"
