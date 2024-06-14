@@ -1,9 +1,10 @@
 {
     "family": "auth-task-definition",
+    "executionRoleArn": "arn:aws:iam::654654310647:role/ecs",
     "containerDefinitions": [
         {
             "name": "auth-container",
-            "image": "654654310647.dkr.ecr.us-east-1.amazonaws.com/my-ecr-repo/auth-IMAGE_TAG_PLACEHOLDER",
+            "image": "654654310647.dkr.ecr.us-east-1.amazonaws.com/my-ecr-repo:auth-latest",
             "essential": true,
             "portMappings": [
                 {
@@ -14,8 +15,8 @@
             ],
             "environment": [
                 {
-                    "name": "ENV_VAR_NAME",
-                    "value": "ENV_VAR_VALUE"
+                    "name": "name",
+                    "value": "sairam balu"
                 }
             ],
             "entryPoint": [
@@ -30,5 +31,8 @@
     "requiresCompatibilities": ["FARGATE"],
     "networkMode": "awsvpc",
     "cpu": "256", 
-    "memory": "512"
+    "memory": "512",
+    "runtimePlatform": {
+        "operatingSystemFamily": "LINUX"
+    }
 }

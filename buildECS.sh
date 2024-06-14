@@ -22,7 +22,7 @@ for service in */ ; do
 
     if [ -f "$task_definition_file" ]; then
         echo "Task definition file exists. Creating task..."
-        perl -pi -e "s|IMAGE_TAG_PLACEHOLDER|$image_tag|g" $task_definition_file
+        #perl -pi -e "s|IMAGE_TAG_PLACEHOLDER|$image_tag|g" $task_definition_file
         aws ecs register-task-definition --cli-input-json file://$task_definition_file
         if [ $? -eq 0 ]; then
             echo "Task definition created successfully"
@@ -53,8 +53,9 @@ for service in */ ; do
     else
         echo "Service does not exist. Creating service..."
         aws ecs create-service --cluster $ecs_cluster_name \
-        --service-name $service_name --task-definition $task_definition_name --desired-count 1 \
-        --launch-type FARGATE
+        --service-name $service_name --task-definition $task_definition_name \
+        --desired-count 1 --launch-type FARGATE \
+        --network-configuration "awsvpcConfiguration={subnets=[subnet-0e7c8c927df207fff],securityGroups=[sg-03aabccb9bb71643b],assignPublicIp=ENABLED}"
     
     if [ $? -eq 0 ]; then
         echo "Service created/updated successfully"
@@ -62,3 +63,4 @@ for service in */ ; do
         echo "Failed to create service"
     fi
     cd ..
+done

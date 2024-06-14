@@ -23,9 +23,11 @@ for service in */ ; do
     service=${service%*/}
     echo "Building service: $service"
     cd $service
+    #task_definition_file="${service}Service.json"
+    #perl -pi -e "s|IMAGE_TAG_PLACEHOLDER|$image_tag|g" $task_definition_file
     docker build -t $service:latest .
-    docker tag $service:latest $regsitry_name/$repository_name:$service-$image_tag
-    docker push $regsitry_name/$repository_name:$service-$image_tag
+    docker tag $service:latest $regsitry_name/$repository_name:$service-latest
+    docker push $regsitry_name/$repository_name:$service-latest
     cd ..
 done
 
